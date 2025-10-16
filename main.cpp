@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 
+#include "functions.hpp"
+#include "BSTree.hpp"
+
 using namespace std;
 
 void printHelp()
@@ -39,7 +42,7 @@ void evalCommand(string line)
     }
 }
 
-void bootStrap()
+void bootStrap(BST &tree)
 {
     cout << "\n Welcome to Amazon Inventory Query System" << endl;
     cout << " enter :quit to exit. or :help to list supported commands." << endl;
@@ -48,12 +51,15 @@ void bootStrap()
     // example: reading from CSV and initializing the data structures
     // Don't dump all code into this single function
     // use proper programming practices
+  
+  loadCSV(tree);
 }
 
 int main(int argc, char const *argv[])
 {
+    BST tree;
     string line;
-    bootStrap();
+    bootStrap(tree);
     while (getline(cin, line) && line != ":quit")
     {
         if (validCommand(line))
