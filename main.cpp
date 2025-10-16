@@ -3,8 +3,12 @@
 
 #include "functions.hpp"
 #include "BSTree.hpp"
+#include "product.hpp"
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
 
 void printHelp()
 {
@@ -22,7 +26,7 @@ bool validCommand(string line)
            (line.rfind("listInventory") == 0);
 }
 
-void evalCommand(string line)
+void evalCommand(string line, BST &tree)
 {
     if (line == ":help")
     {
@@ -32,7 +36,30 @@ void evalCommand(string line)
     else if (line.rfind("find", 0) == 0)
     {
         // Look up the appropriate datastructure to find if the inventory exist
-        cout << "YET TO IMPLEMENT!" << endl;
+        string foundName = line.substr(5);
+        Product foundProduct = tree.findDataByName(foundName);
+        if (foundProduct.productName.compare("$EMPTYPRODUCT$") == 0) {
+
+        } else {
+          if (foundProduct.productId != "") cout << "Product Unique ID:\t" << foundProduct.productId << endl;
+          if (foundProduct.productName != "") cout << "Product Name:\t" << foundProduct.productName << endl;
+          if (foundProduct.brandName != "") cout << "Brand Name:\t"<< foundProduct.brandName << endl;
+          if (foundProduct.asin != "") cout << "Asin:\t" << foundProduct.asin << endl;
+          if (foundProduct.category != "") cout << "Category:\t" << foundProduct.category << endl;
+          if (foundProduct.upcEanCode != "") cout << "Upc Ean Code:\t" << endl;
+          if (foundProduct.listPrice != "") cout << "List Price:\t" << endl;
+          if (foundProduct.sellingPrice != "") cout << "Selling Price:\t" << endl;
+          if (foundProduct.modelNumber != "") cout << "Model Number:\t" << endl;
+          if (foundProduct.aboutProduct != "") cout << "About Product:\t" << endl;
+          if (foundProduct.technicalDetails != "") cout << "Technical Details:\t" << endl;
+          if (foundProduct.image != "") cout << "Image:\t" << endl;
+          if (foundProduct.productUrl != "") cout << "Product Url:\t" << endl;
+          if (foundProduct.dimentions != "") cout << "Dimentions:\t"<< endl;
+          if (foundProduct.directionsToUse != "") cout << "Directions To Use:\t" << endl;
+          if (foundProduct.isAmazonSeller != "") cout << "Is Amazon Seller:\t" << endl;
+          if (foundProduct.sizeQuanityVariant != "") cout << "Size Quanity Variant:\t" << endl;
+          if (foundProduct.productDescription != "") cout << "Product Description:\t" << endl;
+        }
     }
     // if line starts with listInventory
     else if (line.rfind("listInventory") == 0)
@@ -64,7 +91,7 @@ int main(int argc, char const *argv[])
     {
         if (validCommand(line))
         {
-            evalCommand(line);
+            evalCommand(line, tree);
         }
         else
         {

@@ -3,7 +3,7 @@
 
 #include "product.hpp"
 
-Product parseLine(std::string line) {
+Product parseProduct(std::string line) {
   Product newProduct;
 
   std::string token;
@@ -94,4 +94,10 @@ Product parseLine(std::string line) {
   if (token != "") newProduct.productDescription = token;
 
   return newProduct;
+}
+
+Product emptyProduct() {
+  Product returnProduct;
+  returnProduct.productName = "$EMPTYPRODUCT$";
+  return returnProduct;
 }

@@ -34,3 +34,5 @@ typedef struct {
 } Product;
 
 Product parseProduct(std::string line);
+
+Product emptyProduct();

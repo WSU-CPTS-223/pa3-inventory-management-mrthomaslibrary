@@ -2,6 +2,7 @@
 
 #include "BSTree.hpp"
 #include "functions.hpp"
+#include "product.hpp"
 
 BST::BST() { rootNode = nullptr; }
 
@@ -40,10 +41,9 @@ void BST::insertData(Product newData) {
   }
 }
 
-Product BST::findData(std::string id) {
-  Product emptyProdcut;
+Product BST::findDataById(std::string id) {
   int value = stringToId(id);
-  if (!rootNode) { return emptyProdcut; }
+  if (!rootNode) return emptyProduct(); 
 
   Node *currentNode = rootNode;
   
@@ -61,5 +61,18 @@ Product BST::findData(std::string id) {
     }
   }
 
-  return emptyProdcut;
+  return emptyProduct();
+}
+
+Product BST::findDataByName(Node *next, std::string name){
+  if (!next) return emptyProduct();
+  if (next->getData().productName.compare(name) == 0) return next->getData(); 
+  Product foundProduct = findDataByName(next->leftNode, name);
+  if (foundProduct.productName.compare("$EMPTYPRODUCT$") != 0) return foundProduct;
+  return findDataByName(next->rightNode, name);
+}
+
+Product BST::findDataByName(std::string name) {
+  if (!rootNode) return emptyProduct();
+  return findDataByName(rootNode, name);
 }

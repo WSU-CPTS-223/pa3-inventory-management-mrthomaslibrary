@@ -9,5 +9,7 @@ public:
   BST();
   ~BST();
   void insertData(Product newData);
-  Product findData(std::string id);
+  Product findDataById(std::string id);
+  Product findDataByName(Node *next, std::string name);
+  Product findDataByName(std::string name);
 };
