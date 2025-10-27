@@ -8,6 +8,7 @@ typedef struct {
   std::string brandName;
   std::string asin;
   std::string category;
+  std::string categories[10];
   std::string upcEanCode;
   std::string listPrice;
   std::string sellingPrice;

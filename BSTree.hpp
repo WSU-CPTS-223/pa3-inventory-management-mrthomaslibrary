@@ -10,6 +10,8 @@ public:
   ~BST();
   void insertData(Product newData);
   Product findDataById(std::string id);
-  Product findDataByName(Node *next, std::string name);
+  Product findDataByName(Node *nextNode, std::string name);
   Product findDataByName(std::string name);
+  void listDataByCategory(Node *nextNode, std::string category);
+  void listDataByCategory(std::string category);
 };

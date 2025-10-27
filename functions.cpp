@@ -7,6 +7,8 @@ int stringToId(std::string str) {
   int value = 0;
   int length = str.length();
 
+  if (str == "NA") return 0;
+
   for (int i = 0; i < length; i++) {
     int asci = str[i];
     value += asci * 10^(3 * i);
@@ -27,4 +29,10 @@ void loadCSV(BST &tree){
   }
 
   inFile.close();
+}
+
+std::string trim(std::string str) {
+  size_t firstChar = str.find_first_not_of(" ");
+  size_t lastChar = str.find_last_not_of(" ");
+  return str.substr(firstChar, (lastChar - firstChar + 1));
 }

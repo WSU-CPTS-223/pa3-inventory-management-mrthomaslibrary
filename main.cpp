@@ -23,7 +23,8 @@ bool validCommand(string line)
 {
     return (line == ":help") ||
            (line.rfind("find", 0) == 0) ||
-           (line.rfind("listInventory") == 0);
+           (line.rfind("listInventory") == 0) ||
+           (line.rfind(":clear") == 0);
 }
 
 void evalCommand(string line, BST &tree)
@@ -35,39 +36,45 @@ void evalCommand(string line, BST &tree)
     // if line starts with find
     else if (line.rfind("find", 0) == 0)
     {
+
+        string emptyValue = "NA";
+        
         // Look up the appropriate datastructure to find if the inventory exist
         string foundName = line.substr(5);
         Product foundProduct = tree.findDataByName(foundName);
-        if (foundProduct.productName.compare("$EMPTYPRODUCT$") == 0) {
-
-        } else {
-          if (foundProduct.productId != "") cout << "Product Unique ID:\t" << foundProduct.productId << endl;
-          if (foundProduct.productName != "") cout << "Product Name:\t" << foundProduct.productName << endl;
-          if (foundProduct.brandName != "") cout << "Brand Name:\t"<< foundProduct.brandName << endl;
-          if (foundProduct.asin != "") cout << "Asin:\t" << foundProduct.asin << endl;
-          if (foundProduct.category != "") cout << "Category:\t" << foundProduct.category << endl;
-          if (foundProduct.upcEanCode != "") cout << "Upc Ean Code:\t" << endl;
-          if (foundProduct.listPrice != "") cout << "List Price:\t" << endl;
-          if (foundProduct.sellingPrice != "") cout << "Selling Price:\t" << endl;
-          if (foundProduct.modelNumber != "") cout << "Model Number:\t" << endl;
-          if (foundProduct.aboutProduct != "") cout << "About Product:\t" << endl;
-          if (foundProduct.technicalDetails != "") cout << "Technical Details:\t" << endl;
-          if (foundProduct.image != "") cout << "Image:\t" << endl;
-          if (foundProduct.productUrl != "") cout << "Product Url:\t" << endl;
-          if (foundProduct.dimentions != "") cout << "Dimentions:\t"<< endl;
-          if (foundProduct.directionsToUse != "") cout << "Directions To Use:\t" << endl;
-          if (foundProduct.isAmazonSeller != "") cout << "Is Amazon Seller:\t" << endl;
-          if (foundProduct.sizeQuanityVariant != "") cout << "Size Quanity Variant:\t" << endl;
-          if (foundProduct.productDescription != "") cout << "Product Description:\t" << endl;
+        if (foundProduct.productName.compare("$EMPTYPRODUCT$") == 0) {}
+        else {
+          if (foundProduct.productId != emptyValue) cout << "Product Unique ID:\t" << foundProduct.productId << endl;
+          if (foundProduct.productName != emptyValue) cout << "Product Name:\t" << foundProduct.productName << endl;
+          if (foundProduct.brandName != emptyValue) cout << "Brand Name:\t"<< foundProduct.brandName << endl;
+          if (foundProduct.asin != emptyValue) cout << "Asin:\t" << foundProduct.asin << endl;
+          if (foundProduct.category != emptyValue) cout << "Category:\t" << foundProduct.category << endl;
+          if (foundProduct.upcEanCode != emptyValue) cout << "Upc Ean Code:\t" << endl;
+          if (foundProduct.listPrice != emptyValue) cout << "List Price:\t" << endl;
+          if (foundProduct.sellingPrice != emptyValue) cout << "Selling Price:\t" << endl;
+          if (foundProduct.modelNumber != emptyValue) cout << "Model Number:\t" << endl;
+          if (foundProduct.aboutProduct != emptyValue) cout << "About Product:\t" << endl;
+          if (foundProduct.technicalDetails != emptyValue) cout << "Technical Details:\t" << endl;
+          if (foundProduct.image != emptyValue) cout << "Image:\t" << endl;
+          if (foundProduct.productUrl != emptyValue) cout << "Product Url:\t" << endl;
+          if (foundProduct.dimentions != emptyValue) cout << "Dimentions:\t"<< endl;
+          if (foundProduct.directionsToUse != emptyValue) cout << "Directions To Use:\t" << endl;
+          if (foundProduct.isAmazonSeller != emptyValue) cout << "Is Amazon Seller:\t" << endl;
+          if (foundProduct.sizeQuanityVariant != emptyValue) cout << "Size Quanity Variant:\t" << endl;
+          if (foundProduct.productDescription != emptyValue) cout << "Product Description:\t" << endl;
         }
     }
     // if line starts with listInventory
     else if (line.rfind("listInventory") == 0)
     {
-        // Look up the appropriate datastructure to find all inventory belonging to a specific category
-        cout << "YET TO IMPLEMENT!" << endl;
+      string foundCategory = line.substr(14);
+      tree.listDataByCategory(foundCategory);
+    }
+    else if (line.rfind(":clear") == 0) {
+      system("clear");
     }
 }
+
 
 void bootStrap(BST &tree)
 {
