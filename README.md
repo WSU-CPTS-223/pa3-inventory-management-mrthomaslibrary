@@ -7,3 +7,16 @@ We expect a fully functioninig command line REPL application for an inventory qu
 `make` will compile and execute the skeleton code
 
 Feel free to modify Makefile as you see fit.
+
+To Use:
+-Clone repo
+-cd into correct folder
+-type "make" in terminal
+
+Test cases used:
+For find:
+	-"Nuts"
+	-"Florida-Opoly"
+For listInventory:
+	-"Dolls"
+	-"Toys & Games"
